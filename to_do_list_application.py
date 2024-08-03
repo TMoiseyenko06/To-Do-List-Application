@@ -31,6 +31,9 @@ def complete_task(task_list,task):
 def view_tasks(task_list):
     for task in task_list:
         print(f'\t\t{'[x]' if task_list[task] else '[ ]'} : {task}')
+
+def create_list():
+    pass
         
 #decide what function to run based on the inpu
 def run_choice(task_list,choice,task=""):
@@ -41,12 +44,20 @@ def run_choice(task_list,choice,task=""):
     elif choice == 3:
         complete_task(task_list,task) 
     elif choice == 4:
+        pass
+    elif choice == 5:
+        pass
+    elif choice == 6:
         view_tasks(task_list)
         input("\t\tClick 'Enter' to return to the menu")
+    elif choice == 7:
+        pass
 
 #main function that controls everything else
 def main():
     task_list = {}
+    Avalible_lists = [task_list]
+    current_list = 0
     while True:
         try:
             #ask for user choice
@@ -55,8 +66,10 @@ def main():
                 1. Add a task
                 2. Delete a Task
                 3. Mark a Task as Complete
-                4. View Tasks
-                5. Quit
+                4. Create New List
+                5. Change current List
+                6. View Tasks
+                7. Quit
                       
                       """))    
         except:
@@ -64,13 +77,12 @@ def main():
             break
         else:
             #decide if we need to ask user for a task
-            if choice < 5:
-                if not choice == 4:
+            if choice < 7:
+                if not choice == 6:
                     task = input("\t\tPlease enter The name of the task:")
-                    run_choice(task_list,choice,task)
+                    run_choice(Avalible_lists[current_list],choice,task)
                 else:
-                    run_choice(choice)
-                    
+                    run_choice(Avalible_lists[current_list],choice)       
             else:
                 print("\t\tHave a great rest of your day!")
                 break
